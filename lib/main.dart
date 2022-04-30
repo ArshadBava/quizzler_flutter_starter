@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler_flutter_starter/questionbrain.dart';
+import 'questionbrain.dart';
 import 'questions.dart';
-
+QuizeBrain qBrain = QuizeBrain();
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -27,7 +29,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> score = [];
-  int qno = 0;
 
   // List<String> quizz = [
   //   'Coffee is a berry-based beverage',
@@ -63,7 +64,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizz[qno].qText,
+                qBrain.getQs(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -88,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool crtAns = quizz[qno].qAns;
+                bool crtAns = qBrain.getAns();
                 if (crtAns == true) {
                   setState(() {
                     score.add(
@@ -97,7 +98,7 @@ class _QuizPageState extends State<QuizPage> {
                         color: Colors.green,
                       ),
                     );
-                    qno++;
+                    qBrain.index();
                   });
                 } else {
                   setState(() {
@@ -107,7 +108,7 @@ class _QuizPageState extends State<QuizPage> {
                           color: Colors.red,
                         )
                     );
-                    qno++;
+                    qBrain.index();
                   });
                 }
               }
@@ -129,16 +130,16 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool crtAns = quizz[qno].qText;
+                bool crtAns = qBrain.getAns();
                 if (crtAns == false) {
                   setState(() {
                     score.add(
                       Icon(
-                        Icons.close,
+                        Icons.check,
                         color: Colors.green,
                       ),
                     );
-                    qno++;
+                    qBrain.index();
                   });
                 } else {
                   setState(() {
@@ -148,7 +149,7 @@ class _QuizPageState extends State<QuizPage> {
                         color: Colors.red,
                       ),
                     );
-                    qno++;
+                    qBrain.index();
                   });
                 }
               }

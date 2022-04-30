@@ -1,6 +1,6 @@
 class Questions{
   late bool qAns;
-  late bool qText;
+  late String qText;
   Questions({required String q, required bool a}){
     qText = q;
     qAns = a;

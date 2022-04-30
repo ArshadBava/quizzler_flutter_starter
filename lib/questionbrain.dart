@@ -12,10 +12,13 @@ List<Questions> _quizz = [
   Questions(q:'The first living animal sent into space were fruit flies' , a: true),
   Questions(q:'Among the letters of the alphabet, only the letter J is not included in the periodic table' , a: true),
 ];
-bool getQs(){
+ String getQs(){
   return _quizz[_qno].qText;
 }
-bool getAns(){
+ bool getAns(){
   return _quizz[_qno].qAns;
+}
+void index(){
+  _qno++;
 }
 }
